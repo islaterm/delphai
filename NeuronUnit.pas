@@ -4,33 +4,27 @@ interface
 
 type
   INeuron = interface(IInterface)
+    {$region 'Learning methods'}
+    procedure Adjustbias;
     /// <summary> Adjusts the delta value of the neuron according to the error
     /// received during backpropagation
     /// </summary>
-    procedure adjustDeltaWith(error: Double);
+    procedure Adjustdeltawith(Error: Double);
     /// <summary> Feeds the neuron with a list of inputs and returns an output
     /// given by the activation function.
     /// </summary>
-
+    function Feed(Inputs: Double): Double; varargs;
+    /// <summary> Trains the neuron based on a desired output.
+    /// 
+    /// The weight and bias of the neuron will be adjusted according to the difference between the 
+    /// expected and the actual output of feeding the input to the neuron.
+    /// </summary>
+    /// <param name="inputs"> the values to be fed to the neuron
+    /// </param>
+    procedure Train(Desiredoutput: Double; Inputs: Double); varargs;
+    {$endregion}
+    
     (*
-      /**
-      * Feeds the neuron with a list of {@code inputs} and
-      * returns an {@code output} given by the activation
-      * function.
-      */
-      double feed(double... inputs);
-
-      /**
-      * Trains the neuron based on a desired output.
-      * <p>
-      * The weight and bias of the neuron will be adjusted
-      * according to the difference between the expected and
-      * the actual output of feeding the input to the neuron.
-      *
-      * @param inputs
-      *     the values to be fed to the neuron
-      */
-      void train(double desiredOutput, double... inputs);
       // endregion
 
       // region : getters/setters
