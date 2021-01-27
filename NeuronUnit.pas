@@ -4,6 +4,7 @@ interface
 
 type
   INeuron = interface(IInterface)
+
     {$region 'Learning methods'}
     procedure Adjustbias;
     /// <summary> Adjusts the delta value of the neuron according to the error
@@ -23,7 +24,13 @@ type
     /// </param>
     procedure Train(Desiredoutput: Double; Inputs: Double); varargs;
     {$endregion}
-    
+
+    {$region 'Properties'}
+    procedure SetWeights(Weights: Array of Double);
+    function GetWeights: Array of Double;
+    property Weights: Array of Double read GetWeights write SetWeights;
+
+    {$endregion}
     (*
       // endregion
 
